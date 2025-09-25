@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h2>todo List</h2>
+
+    <input type="text" id="textbox">
+    <button id="button">Click Me</button>
+    <ul id="list" style="color: black;"></ul>
+
+    <script>
+        const button = document.getElementById('button');
+        const textbox = document.getElementById('textbox');
+        const list = document.getElementById('list');
+    
+        button.addEventListener('click', () => {
+            const tasktext = textbox.value.trim();
+            if (!tasktext) return; 
+    
+            const li = document.createElement('li');
+            li.textContent = tasktext;
+    
+            const editbutton = document.createElement('button');
+            editbutton.textContent = 'Edit';
+    
+    
+            li.appendChild(editbutton);
+    
+       
+            editbutton.addEventListener('click', () => {
+                const newtasktext = prompt('Edit your task:', tasktext);
+                if (newtasktext) {
+                    li.firstChild.textContent = newtasktext; 
+                }
+            });
+
+            const dltbutton=document.createElement('button')
+            dltbutton.textContent='delete'
+            li.appendChild(dltbutton);
+
+            dltbutton.addEventListener('click',()=>{
+                list.removeChild(li);
+            })
+
+    
+            list.appendChild(li);
+            textbox.value = '';
+
+
+
+        });
+    </script>
+    
+
+
+</body>
+
+</html>
